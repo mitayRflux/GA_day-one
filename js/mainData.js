@@ -4,7 +4,7 @@ fetch('./db.json')
   return response.json();
 })
   .then((data)=>{
-    console.log(data.anime);
+    console.log(data.anime[35]);
   });
 };
 

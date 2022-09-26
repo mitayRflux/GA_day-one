@@ -1,6 +1,6 @@
-const totop = function(){
-  const totop = document.querySelector('#scrollToTopButton');
-totop.addEventListener('click',(event)=>{
+const topBtn = ()=>{
+const toTop = document.querySelector('#scrollToTopButton');
+toTop.addEventListener('click',(event)=>{
   event.preventDefault();
   seamless.scrollIntoView(document.querySelector(".header"), {
     behavior: "smooth",
@@ -8,6 +8,7 @@ totop.addEventListener('click',(event)=>{
     inline: "center",
 });
 });
-};
 
-totop();
+}
+
+topBtn();

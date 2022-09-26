@@ -9,7 +9,7 @@ const slider = ()=>{
     },
       effect:'fade',
       speed:1000
-  });
+  });  
 };
 
 slider();
