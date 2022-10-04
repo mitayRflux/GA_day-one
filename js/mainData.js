@@ -12,7 +12,8 @@ const mainData = ()=>{
     const list = arrey.filter(item=>item.ganre===ganre);//фильтруем массив по жанрам
 
     listBlock.classList.add('row');//добавляем блоку класс
-    
+    productBlock.classList.add('mb-5');//добавляем отступ с низу
+
 
 
 
@@ -25,32 +26,38 @@ const mainData = ()=>{
               </div>
                 <div class="col-lg-4 col-md-4 col-sm-4">
                    <div class="btn__all">
-                     <a href="/categories.html" class="primary-btn">View All <span class="arrow_right"></span></a>
+                     <a href="/categories.html?ganre=${ganre}" class="primary-btn">View All <span class="arrow_right"></span></a>
                    </div>
                 </div>
           </div>
     `);
     list.forEach((item)=>{
+       const tagsBlock= document.createElement('ul');
+
+       item.tags.forEach(tag=>{   //добавляем в элементы тэги
+        tagsBlock.insertAdjacentHTML('afterbegin', `
+             <li>${tag}</li>
+        `);
+       // console.log(item);
+
+       });
+      // console.dir(tagsBlock);  //команда выводит в консоль как объект
+
+
       listBlock.insertAdjacentHTML('afterbegin',`
-      <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6">
+        <d class="col-lg-4 col-md-6 col-sm-6">
           <div class="product__item">
             <div class="product__item__pic set-bg" data-setbg="${item.image}">
               <div class="ep">${item.rating}/ 10</div>
               <div class="view"><i class="fa fa-eye"></i>${item.views}</div>
             </div>
                 <div class="product__item__text">
-                  <ul>
-                    <li>Active</li>
-                    <li>Movie</li>
-                  </ul>
-                <h5><a href="/anime-details.html">${item.title}</a></h5>
+                ${tagsBlock.outerHTML}
+                <h5><a href="/anime-details.html?itemId=${item.id}">${item.title}</a></h5>
           </div>
          </div>
-      </div>
       `);
     });
-
     productBlock.append(listBlock);//добавляем блок в блок
     wrapper.append(productBlock);//добавляем блок в контейнер
     wrapper.querySelectorAll('.set-bg').forEach((elem)=>{
